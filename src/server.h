@@ -12,6 +12,7 @@
 #define OUTPUT '0'
 #define SET_WINDOW_TITLE '1'
 #define SET_PREFERENCES '2'
+#define SET_PREFERENCES '3'
 
 // url paths
 struct endpoints {
@@ -82,6 +83,7 @@ struct server {
   bool once;               // whether accept only one client and exit on disconnection
   char socket_path[255];   // UNIX domain socket path
   char terminal_type[30];  // terminal type to report
+  char title_fixed[1024];  // title define
 
   uv_loop_t *loop;      // the libuv event loop
   uv_signal_t watcher;  // SIGCHLD watcher

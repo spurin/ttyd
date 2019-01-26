@@ -26,6 +26,7 @@ const enum Command {
     OUTPUT = '0',
     SET_WINDOW_TITLE = '1',
     SET_PREFERENCES = '2',
+    SET_WINDOW_TITLE_ONLY = '3',
 
     // client side
     INPUT = '0',

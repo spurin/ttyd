@@ -51,6 +51,7 @@ static const struct option options[] = {
     {"gid", required_argument, NULL, 'g'},
     {"signal", required_argument, NULL, 's'},
     {"index", required_argument, NULL, 'I'},
+    {"title-fixed", required_argument, NULL, 'f'},
     {"base-path", required_argument, NULL, 'b'},
     {"ipv6", no_argument, NULL, '6'},
     {"ssl", no_argument, NULL, 'S'},
@@ -69,7 +70,7 @@ static const struct option options[] = {
     {"version", no_argument, NULL, 'v'},
     {"help", no_argument, NULL, 'h'},
     {NULL, 0, 0, 0}};
-static const char *opt_string = "p:i:c:u:g:s:I:b:6aSC:K:A:Rt:T:Om:oBd:vh";
+static const char *opt_string = "p:i:c:u:g:s:f:I:b:6aSC:K:A:Rt:T:Om:oBd:vh";
 
 static void print_help() {
   // clang-format off
@@ -89,6 +90,7 @@ static void print_help() {
           "    -R, --readonly          Do not allow clients to write to the TTY\n"
           "    -t, --client-option     Send option to client (format: key=value), repeat to add more options\n"
           "    -T, --terminal-type     Terminal type to report, default: xterm-256color\n"
+          "    -f, --title-fixed       Fix the tab title(eg: demo)\n"
           "    -O, --check-origin      Do not allow websocket connection from different origin\n"
           "    -m, --max-clients       Maximum clients to support (default: 0, no limit)\n"
           "    -o, --once              Accept only one client and exit on disconnection\n"
@@ -320,6 +322,9 @@ int main(int argc, char **argv) {
       case 'i':
         strncpy(iface, optarg, sizeof(iface) - 1);
         iface[sizeof(iface) - 1] = '\0';
+        break;
+      case 'f':
+        strncpy(server->title_fixed, optarg, sizeof(server->title_fixed) - 1);
         break;
       case 'c':
         if (strchr(optarg, ':') == NULL) {
