@@ -12,7 +12,7 @@
 #define OUTPUT '0'
 #define SET_WINDOW_TITLE '1'
 #define SET_PREFERENCES '2'
-#define SET_PREFERENCES '3'
+#define SET_WINDOW_TITLE_ONLY '3'
 
 // url paths
 struct endpoints {
